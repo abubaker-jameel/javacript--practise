@@ -81,3 +81,22 @@ method.handleData.call(place_01, 20, 'Dawood') //call execute then and there
 method.handleData.apply(place_02, [30, 'Ali']) //apply execute then and there
 const newMethod = method.handleData.bind(place_03) //bind execute only when we call mostly used at event handles
 newMethod(40, 'Haider')
+
+//pure function
+
+const array__01 = [1, 2, 3, 4]
+
+function pureFunction(a, element) {
+    return [...a, element, Math.random()]
+}
+console.log(pureFunction(array__01, 5))
+
+//impure function
+
+const array__02 = [1, 2, 3, 4]
+
+function impureFunction(b, element) {
+    b.push(element)
+}
+impureFunction(array__02, 5)
+console.log(array__02)
