@@ -57,3 +57,27 @@ function closure(id) {
 
 const getOutput = closure(10)
 getOutput("20")
+
+//call, apply and bind method
+
+const method = {
+    handleData: function (id, name) {
+        console.log(`My name is ${name} and id is ${id} living at ${this.livingPlace}`)
+    }
+}
+
+const place_01 = {
+    livingPlace: "corner"
+}
+const place_02 = {
+    livingPlace: "middle"
+}
+const place_03 = {
+    livingPlace: "front"
+}
+
+method.handleData(10, "Abubaker")
+method.handleData.call(place_01, 20, 'Dawood') //call execute then and there
+method.handleData.apply(place_02, [30, 'Ali']) //apply execute then and there
+const newMethod = method.handleData.bind(place_03) //bind execute only when we call mostly used at event handles
+newMethod(40, 'Haider')
