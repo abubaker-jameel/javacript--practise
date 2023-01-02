@@ -113,3 +113,19 @@ function calculation(x, y, callback) {
 
 console.log(calculation(19, 29, add))
 
+// promises
+
+let prom = new Promise((resolve, reject) => {
+    const id = 10
+    if (id === 10) {
+        resolve(true)
+    } else {
+        reject(false)
+    }
+})
+
+prom.then((bool) => {
+    console.log(bool)
+}).catch((bool) => {
+    console.log(bool)
+})
