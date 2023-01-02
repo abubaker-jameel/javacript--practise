@@ -100,3 +100,16 @@ function impureFunction(b, element) {
 }
 impureFunction(array__02, 5)
 console.log(array__02)
+
+//callback
+
+function add(x, y) {
+    return x + y
+}
+
+function calculation(x, y, callback) {
+    return callback(x, y)
+}
+
+console.log(calculation(19, 29, add))
+
