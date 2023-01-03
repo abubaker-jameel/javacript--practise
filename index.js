@@ -129,3 +129,18 @@ prom.then((bool) => {
 }).catch((bool) => {
     console.log(bool)
 })
+
+//async and await
+
+async function asynchronous() {
+    let p = new Promise((resolve, reject) => {
+        let a = 10
+        if (a == 10) {
+            return resolve(true)
+        } else {
+            return reject(false)
+        }
+    })
+    console.log(await p)
+}
+asynchronous()
