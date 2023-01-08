@@ -154,3 +154,11 @@ function higherOrderFunction() {
     }
 }
 higherOrderFunction()();
+
+//anonymous function
+(function (x, y) {
+    console.log(`values of anonymous function : x = ${x} : y = ${y}`)
+}(0, 1))
+
+let anonymous = () => console.log("calling anonymous arrow function")
+anonymous()
