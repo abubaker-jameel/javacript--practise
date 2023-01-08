@@ -144,3 +144,13 @@ async function asynchronous() {
     console.log(await p)
 }
 asynchronous()
+
+//higher order function
+
+function higherOrderFunction() {
+    console.log("calling hoc ")
+    return function innerFunction() {
+        console.log("calling inner function")
+    }
+}
+higherOrderFunction()();
