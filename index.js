@@ -162,3 +162,14 @@ higherOrderFunction()();
 
 let anonymous = () => console.log("calling anonymous arrow function")
 anonymous()
+
+//map, filter and reduce array methods
+
+// map method
+const numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+const mapArray = numbersArray.map((number, index, array) => console.log(number, index, array))
+// filter method
+const filterArray = numbersArray.filter(number => console.log(number > 2 ? `filter number : ${number}` : `filter bool : ${false}`))
+//reduce method
+const reduceArrayValue = numbersArray.reduce((number__01, number__02) => (number__01 + number__02))
+console.log(`reduce value : ${reduceArrayValue}`)
