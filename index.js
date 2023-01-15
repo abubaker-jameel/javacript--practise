@@ -173,3 +173,97 @@ const filterArray = numbersArray.filter(number => console.log(number > 2 ? `filt
 //reduce method
 const reduceArrayValue = numbersArray.reduce((number__01, number__02) => (number__01 + number__02))
 console.log(`reduce value : ${reduceArrayValue}`)
+
+//Object & Maps
+
+//objects
+
+const colorName = 'black';
+const hexCode = '#000';
+
+const colors = {
+    'yellow Color': '#ff0',
+    blue: "#f00",
+    orange: "#f60",
+    [colorName]: hexCode
+};
+
+// or colors[colorName] = hexCode
+
+//in order to access the spaced keys from the object we can use square bracket
+console.log(colors["blue"])
+console.log(colors['yellow Color'])
+
+function getColorValue(key) {
+    return colors[key]
+}
+
+console.log(getColorValue('blue'))
+
+// to delete the key value pair of object we can use delete operator
+
+delete colors['blue']
+// or
+delete colors.blue
+
+const user = {
+    name: "Abubaker",
+    username: "abubaker",
+    email: "reed@gmail.com",
+    details: {
+        title: "Programmer"
+    }
+};
+
+// const { title } = user.details
+// const { name, details: { title} } = user;
+
+function displayUserBio({
+    name,
+    details: {
+        title
+    }
+}) {
+    console.log(`${name} is a ${title}`);
+}
+
+displayUserBio(user);
+
+// const { username, email } = user;
+
+// function displayUser() {
+//   console.log(`username: ${username}, email: ${email}`);
+// }
+
+// displayUser()
+
+const userData = {
+    name: "",
+    username: "",
+    phoneNumber: "",
+    email: "",
+    password: "",
+    verified: true
+};
+
+const newUserData = {
+    username: "ReedBarger",
+    email: "reed@gmail.com",
+    password: "mypassword"
+};
+
+const createdUserData = {
+    ...userData,
+    ...newUserData,
+    verified: false
+};
+console.log(createdUserData);
+
+// Object.assign() allows us to merge properties from two or more objects into a new object:
+//     Object.assign({}, user, newUser)
+// However, this is not very intuitive or readable.A cleaner way of doing this is to use the spread operator(...): ``
+// `js const createdUser = { ...user, ...newUser, verified: false }; `
+//
+// console.log(Object.assign({}, user, newUser, { verified: false }));
+// console.log(Object.assign(userData, newUserData))
+// console.log({}, Object.assign(userData, newUserData))
