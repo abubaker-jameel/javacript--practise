@@ -267,3 +267,340 @@ console.log(createdUserData);
 // console.log(Object.assign({}, user, newUser, { verified: false }));
 // console.log(Object.assign(userData, newUserData))
 // console.log({}, Object.assign(userData, newUserData))
+
+
+//Arrays and Sets
+
+const todosData = [];
+
+const todo1 = {
+    text: 'Wash the dishes',
+    complete: false
+};
+
+const todo2 = {
+    text: 'Do laundry',
+    complete: false
+};
+
+todosData.push(todo1, todo2);
+todosData.pop();
+// todosData[1] = todo2;
+// todosData[0] = todo1;
+console.log(todosData);
+
+const temperatures = [{
+        degrees: 69,
+        isRecordTemp: false
+    },
+    {
+        degrees: 82,
+        isRecordTemp: false
+    },
+    {
+        degrees: 73,
+        isRecordTemp: false
+    },
+    {
+        degrees: 64,
+        isRecordTemp: false
+    }
+];
+
+// includes, some, every
+const resultEvery = temperatures.every(temperature => !temperature.isRecordTemp); // true / false
+console.log("This is every array method result" + " " + resultEvery);
+
+const resultSome = temperatures.some(temperature => temperature.isRecordTemp === false); // true / false
+console.log("This is some array method result" + " " + resultSome);
+
+//map method
+const newTemps = temperatures.map(temperature =>
+    temperature.degrees > 70 ? {
+        ...temperature,
+        isHigh: true
+    } : temperature
+);
+//forEach method
+newTemps.forEach(temperature => {
+    if (temperature.isHigh) {
+        console.log(`Temperature ${temperature.degrees} was a record high last week!`);
+    }
+})
+// console.log(newTemps);
+
+
+// .find() works in the same way as.filter() but returns just one array element:
+
+const restaurants = [{
+        name: 'Cap City Diner',
+        milesAway: 2.2
+    },
+    {
+        name: 'Chop Shop',
+        milesAway: 4.1
+    },
+    {
+        name: 'Northstar Cafe',
+        milesAway: 0.9
+    },
+    {
+        name: 'City Tavern',
+        milesAway: 0.5
+    },
+    {
+        name: 'Shake Shack',
+        milesAway: 5.3
+    }
+]
+
+
+// Unlike.map() which always returns an array, .reduce() can transform an array into any data type.This is useful
+// for tasks such as creating totals: ``
+// `js const total = menuItems.reduce((accumulator, menuItem) => { return accumulator + menuItem.price;
+// }, 0); `
+// `
+const result = restaurants.find(restaurant =>
+    restaurant.name.toLowerCase().includes('north') && restaurant.milesAway < 2
+)
+console.log(result);
+
+const menuItems = [{
+        item: "Blue Cheese Salad",
+        price: 8
+    },
+    {
+        item: "Spicy Chicken Rigatoni",
+        price: 18
+    },
+    {
+        item: "Ponzu Glazed Salmon",
+        price: 23
+    },
+    {
+        item: "Philly Cheese Steak",
+        price: 13
+    },
+    {
+        item: "Baked Italian Chicken Sub",
+        price: 12
+    },
+    {
+        item: "Pan Seared Ribeye",
+        price: 31
+    }
+];
+
+const total = menuItems.reduce((accumulator, menuItem) => {
+    console.log(`
+    accumulator: ${accumulator},
+    menu item price: ${menuItem.price}
+  `);
+    return accumulator + menuItem.price;
+}, 0);
+console.log(total);
+
+// Challenge:
+// Use reduce() to sum the weights of all the cars
+// Stretch goal:
+// Use reduce to sum the weights of only the electric cars
+
+const carsData = [{
+        name: "Toyota",
+        isElectric: false,
+        weight: 1320
+    },
+    {
+        name: "Ford",
+        isElectric: false,
+        weight: 1400
+    },
+    {
+        name: "Volkswagen",
+        isElectric: false,
+        weight: 1370
+    },
+    {
+        name: "Honda",
+        isElectric: false,
+        weight: 1375
+    },
+    {
+        name: "Tesla",
+        isElectric: true,
+        weight: 1750
+    },
+    {
+        name: "BMW",
+        isElectric: true,
+        weight: 1350
+    },
+];
+
+
+const totalWeight = carsData.reduce((accumulator, car) => {
+    if (car.isElectric) {
+        return accumulator + car.weight;
+    } else {
+        return accumulator;
+    }
+}, 0)
+
+console.log(totalWeight);
+
+// Virtually every array method can be recreated with.reduce().This is because the majority of these methods are productions, meaning that they take an array and transform it into something else.
+
+const numbers = [1, 2, 3, 4, 5, 6];
+
+const doubledNumbers = numbers.reduce((acc, num) => {
+    acc.push(num * 2);
+    return acc;
+}, []);
+console.log('doubled numbers', doubledNumbers);
+console.log('numbers', numbers);
+
+
+// We can merge multiple arrays into a new array using the spread operator(...).The order in which the arrays are entered is retained:
+
+//     const otherMenuIdeas = [...breakfastMenuIdeas, ...allMenuIdeas];
+
+// We can use.slice() to remove items.
+
+// allMenuIdeas.slice(1, 3)
+
+//     .findIndex() allows us to find a particular element when we don 't know where it is stored:
+
+// allMenuIdeas.findIndex(idea => idea === 'Harvest Salad'
+
+//         We can use these in combination to update elements in the array:
+
+//         const finalMenuIdeas = [
+//             ...allMenuIdeas.slice(0, saladIndex),
+//             "Garden Salad",
+//             ...allMenuIdeas.slice(saladIndex + 1)
+//         ];
+const breakfastMenuIdeas = ["Buckwheat Pancakes"];
+const dinnerMenuIdeas = ["Glazed Salmon", "Meatloaf", "American Cheeseburger"];
+
+const allMenuIdeas = [
+    ...breakfastMenuIdeas,
+    "Harvest Salad",
+    "Southern Fried Chicken",
+    ...dinnerMenuIdeas
+];
+
+const saladIndex = allMenuIdeas.findIndex(idea => idea === 'Harvest Salad');
+
+const meatloafIndex = allMenuIdeas.findIndex(idea => idea === 'Meatloaf');
+
+const finalMenuIdeas = [
+    ...allMenuIdeas.slice(0, meatloafIndex),
+    ...allMenuIdeas.slice(meatloafIndex + 1)
+]
+// const finalMenuIdeas = [
+//   ...allMenuIdeas.slice(0, saladIndex),
+//   "Garden Salad",
+//   ...allMenuIdeas.slice(saladIndex + 1)
+// ];
+
+console.log(finalMenuIdeas);
+
+//array destruction
+
+const arrayBooleans = [false, true, false, true]
+const [firstBool, secondBool] = arrayBooleans
+
+// We can convert objects into arrays in three ways:
+
+//     Object.keys() - allows us to take the keys of an object and turn them into an array.
+
+// Object.keys(user);
+
+// Object.values() allows us to get the values of an object:
+
+//     Object.values(user);
+
+// Object.entries() allows us to iterate over the entire object(keys and values):
+
+//     Object.entries(user);
+
+// for-in loop
+// const obj = { one: 1, two: 2 };
+
+// for (const key in obj) {
+//   console.log('value', obj[key]);
+// }
+
+// Object.keys(), Object.values(), Object.entries()
+// const user = {
+//   name: 'John',
+//   age: 29
+// };
+
+// console.log(Object.entries(user));
+
+const users = {
+    '2345234': {
+        name: "John",
+        age: 29
+    },
+    '8798129': {
+        name: "Jane",
+        age: 42
+    },
+    '1092384': {
+        name: "Fred",
+        age: 17
+    }
+};
+
+const usersOver20 = Object.entries(users).reduce((acc, [id, user]) => {
+    if (user.age > 20) {
+        acc.push({
+            ...user,
+            id
+        });
+    }
+    return acc;
+}, []);
+console.log(usersOver20);
+
+// const values = Object.keys(user).map(key => user[key]);
+// console.log(values);
+// console.log(Object.values(user));
+
+// const monthlyExpenses = {
+//   food: 400,
+//   rent: 1700,
+//   insurance: 550,
+//   internet: 49,
+//   phone: 95
+// };
+
+// const monthlyTotal = Object.values(monthlyExpenses).reduce((acc, expense) => acc + expense, 0);
+// console.log(monthlyTotal);
+
+//Sets
+const customerDishes = [
+    "Chicken Wings",
+    "Fish Sandwich",
+    "Beef Stroganoff",
+    "Grilled Cheese",
+    "Blue Cheese Salad",
+    "Chicken Wings",
+    "Reuben Sandwich",
+    "Grilled Cheese",
+    "Fish Sandwich",
+    "Chicken Pot Pie",
+    "Fish Sandwich",
+    "Beef Stroganoff"
+];
+
+const uniqueDishes = [...new Set(customerDishes)];
+console.log(uniqueDishes)
+
+// const numbers = new Set([[1], [2], [3]]);
+
+// for (const num of numbers) {
+//   console.log(num);
+// }
