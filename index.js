@@ -627,7 +627,7 @@ book2.addTheme("Corruption");
 console.log(book1.themes);
 console.log(book2.themes);
 
-//class
+//Class and Constructor function
 class Film {
     constructor(id, title, director, releaseYear, genres = []) {
         this.id = id;
@@ -725,3 +725,36 @@ console.log(product1.price);
 // Binding solves the problem of losing this when using callbacks such as setTimeout.To ensure that all references to the method are bound properly, we override the method in the constructor:
 
 //     this.favoriteProduct = this.favoriteProduct.bind(this);
+
+//DOM
+
+// The DOM(Document Object Model) makes all web applications possible by giving us an interface which connects JS to HTML and CSS.
+// So far we 've had access to the global object (window object) from our app. That window has a property called document, which is the DOM.
+// Via the DOM, we can:
+
+//     Dynamically add static HTML:
+
+//     const p = document.createElement('p');
+// p.innerText = 'Hello world';
+// document.body.append(p);
+
+
+// Add styles:
+
+//     document.body.style.background = 'palegoldenrod';
+// p.style.color = '#05f';
+
+
+// Add JS:
+
+//     p.addEventListener('click', () => console.log('clicked'))
+
+// We listen
+// for events in JS with addEventListener():
+
+//     post.addEventListener('click', event => {
+
+//     });
+
+// We can listen
+// for clicks, mouseovers, mouseouts, keyups, keydowns, keypresses and many more.
