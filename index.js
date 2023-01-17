@@ -604,3 +604,124 @@ console.log(uniqueDishes)
 // for (const num of numbers) {
 //   console.log(num);
 // }
+
+
+//Classes
+
+//Constructor function
+function Book(id, title, author, themes = []) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.themes = themes;
+}
+// to add new properties or methods we can use prototype
+Book.prototype.addTheme = function (newTheme) {
+    this.themes = [...this.themes, newTheme];
+}
+
+const book1 = new Book(1, "Lord of the Rings", "JRR Tolkien");
+const book2 = new Book(2, "The Trial", "Franz Kafka");
+book1.addTheme("Fantasy");
+book2.addTheme("Corruption");
+console.log(book1.themes);
+console.log(book2.themes);
+
+//class
+class Film {
+    constructor(id, title, director, releaseYear, genres = []) {
+        this.id = id;
+        this.title = title;
+        this.director = director;
+        this.releaseYear = releaseYear;
+        this.genres = genres;
+    }
+
+    addGenre(genre) {
+        this.genres = [...this.genres, genre];
+    }
+
+    getFilmTitle() {
+        return `Film: ${this.title}`
+    }
+}
+
+const myFavouriteFilm = new Film(1, "Rear Window", "Afred Hitchcock", "1954");
+console.log(myFavouriteFilm.director)
+myFavouriteFilm.addGenre("Thriller");
+console.log(myFavouriteFilm.genres)
+console.log(myFavouriteFilm.getFilmTitle());
+
+// Every object created by a constructor
+// function inherits from its constructor 's prototype. This is known as prototypal inheritance.
+// We can see any changes made by a constructor
+// function to its prototype with:
+
+//     console.log(Object.getPrototypeOf(student1).constructor);
+
+// An alternative way of accessing the object 's prototype is:
+
+// console.log(student1.__proto__);
+
+// We can see that prototypes form a chain leading back to the original Object prototype with:
+
+//     console.log(student1.__proto__.__proto__ === Object.prototype);
+
+console.log(Object.getPrototypeOf({}).constructor)
+console.log(Object.prototype)
+console.log(Object.__prototype__)
+
+// getter and setter
+
+// One of the major problems with JS is that there are no private properties - all of its properties and methods are accessible by anyone, meaning that they can be mutated, which can
+// break your application.We can use two special class features to prevent this:
+
+//     A getter allows us to access properties in an object.
+
+// get price() {
+//     return this._price;
+// }
+
+// A setter allows users to change or mutate the properties in an object,
+//     while ensuring that the value set is a valid type.
+
+// set price(price) {
+//     if (typeof price !== "number") {
+//         return this._price;
+//     } else {
+//         this._price = price;
+//     }
+// }
+// }
+
+class Product {
+    constructor(name, price, discountable) {
+        this.name = name;
+        this._price = price;
+        this.discountable = discountable;
+    }
+
+    get price() {
+        return this._price;
+    }
+
+    set price(price) {
+        if (typeof price !== "number") {
+            return this._price;
+        } else {
+            this._price = price;
+        }
+    }
+}
+
+const product1 = new Product("Coffee Maker", 99.95, false);
+product1.price = 30;
+console.log(product1.price);
+// product1.price = {};
+// console.log(product1.clearancePrice);
+// product1.price = {};
+// console.log(product1.newPrice);
+
+// Binding solves the problem of losing this when using callbacks such as setTimeout.To ensure that all references to the method are bound properly, we override the method in the constructor:
+
+//     this.favoriteProduct = this.favoriteProduct.bind(this);
